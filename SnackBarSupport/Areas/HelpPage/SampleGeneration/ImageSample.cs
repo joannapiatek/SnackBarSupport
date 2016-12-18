@@ -1,6 +1,6 @@
 using System;
 
-namespace SnackBarSupport.Areas.HelpPage
+namespace SnackBarSupport.Areas.HelpPage.SampleGeneration
 {
     /// <summary>
     /// This represents an image sample on the help page. There's a display template named ImageSample associated with this class.

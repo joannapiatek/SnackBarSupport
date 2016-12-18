@@ -260,9 +260,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngredientsController.cs" />
-    <Compile Include="Controllers\RecipesController.cs" />
-    <Compile Include="DAL\DbNames.cs" />
+    <Compile Include="Controllers\RecipiesController.cs" />
+    <Compile Include="Controllers\RestaurantsController.cs" />
+    <Compile Include="Controllers\SalesHistoryController.cs" />
+    <Compile Include="Controllers\StorehouseController.cs" />
     <Compile Include="DAL\DbContext.cs" />
+    <Compile Include="DAL\GenericRepository.cs" />
+    <Compile Include="DAL\IGenericRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -360,9 +364,9 @@
     <None Include="App_Config\Web.AzureDebug.config">
       <DependentUpon>Web.Base.config</DependentUpon>
     </None>
-    <ProjectReference Include="..\SnackBarSupport.Dto\SnackBarSupport.Dto.csproj">
+    <ProjectReference Include="..\SnackBarSupport.Dto\SnackBarSupport.Models.csproj">
       <Project>{1EA39122-C8A3-47F6-92CE-90F8B045A47E}</Project>
-      <Name>SnackBarSupport.Dto</Name>
+      <Name>SnackBarSupport.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

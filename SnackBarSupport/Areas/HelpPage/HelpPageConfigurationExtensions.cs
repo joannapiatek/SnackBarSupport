@@ -13,6 +13,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using SnackBarSupport.Areas.HelpPage.ModelDescriptions;
 using SnackBarSupport.Areas.HelpPage.Models;
+using SnackBarSupport.Areas.HelpPage.SampleGeneration;
 
 namespace SnackBarSupport.Areas.HelpPage
 {

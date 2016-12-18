@@ -1,4 +1,4 @@
-namespace SnackBarSupport.Areas.HelpPage
+namespace SnackBarSupport.Areas.HelpPage.SampleGeneration
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

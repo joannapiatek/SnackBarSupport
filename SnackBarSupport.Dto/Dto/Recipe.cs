@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 
-namespace SnackBarSupport.Dto.Models
+namespace SnackBarSupport.Dto.Dto
 {
     public class Recipe : DtoBase
     {

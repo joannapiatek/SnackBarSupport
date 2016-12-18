@@ -4,8 +4,8 @@ using SnackBarSupport.Dto.Dto;
 
 namespace SnackBarSupport.Controllers
 {
-    [RoutePrefix("api/ingredients")]
-    public class IngredientsController : GenericRepository<Ingredient>
+    [RoutePrefix("api/saleshistory")]
+    public class SalesHistoryController : GenericRepository<SaleHistory>
     {
     }
 }

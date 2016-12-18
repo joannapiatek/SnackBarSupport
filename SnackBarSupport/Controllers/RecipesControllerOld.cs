@@ -8,14 +8,14 @@ using SnackBarSupport.Dto.Models;
 namespace SnackBarSupport.Controllers
 {
     [RoutePrefix("api/recipes")]
-    public class RecipesController : ApiController
+    public class RecipesControllerOld : ApiController
     {
-        public DbContext Context { get; set; }
+        public MongoDbContext Context { get; set; }
 
-        public RecipesController() : this(new DbContext())
+        public RecipesControllerOld() : this(new MongoDbContext())
         { }
 
-        public RecipesController(DbContext context)
+        public RecipesControllerOld(MongoDbContext context)
         {
             Context = context;
         }
@@ -79,7 +79,7 @@ namespace SnackBarSupport.Controllers
         }
 
         [HttpDelete, Route("{id}")]
-        public IHttpActionResult DeleteConfirmed(string id)
+        public IHttpActionResult Delete(string id)
         {
             if (string.IsNullOrEmpty(id))
             {

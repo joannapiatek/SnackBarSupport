@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using System.Web.Http;
 
-namespace SnackBarSupport.Dto.Models
+namespace SnackBarSupport.Dto.Dto
 {
+    [RoutePrefix("api/storehouses")]
     public class Storehouse : DtoBase
     {
         public string Name { get; set; }
