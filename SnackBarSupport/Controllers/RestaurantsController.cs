@@ -5,7 +5,7 @@ using SnackBarSupport.Dto.Dto;
 namespace SnackBarSupport.Controllers
 {
     [RoutePrefix("api/restaurants")]
-    public class RestaurantsController : GenericRepository<Restaurant>
+    public class RestaurantsController 
     {
     }
 }

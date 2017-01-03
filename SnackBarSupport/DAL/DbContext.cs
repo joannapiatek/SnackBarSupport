@@ -41,17 +41,17 @@ namespace SnackBarSupport.DAL
         //    }
         //}
 
-        public IMongoCollection<TEntity> GetCollection<TEntity>()
+        public IMongoCollection<T> GetCollection<T>()
         {
-            string collectionName = typeof(TEntity).Name.ToLower() + "s";
+            string collectionName = typeof(T).Name.ToLower() + "s";
             if (collectionName.Length == 1)
             {
                 throw new ArgumentException();
             }
             collectionName = collectionName.First().ToString().ToUpper() + collectionName.Substring(1);
 
-            return Database.GetCollection<TEntity>(collectionName)
-                .WithReadPreference(ReadPreference.SecondaryPreferred);
+            return Database.GetCollection<T>(collectionName)
+                .WithReadPreference(ReadPreference.SecondaryPreferred) as IMongoCollection<T>;
         }
     }
 }
