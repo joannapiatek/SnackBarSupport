@@ -261,6 +261,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="DAL\DbContext.cs" />
+    <Compile Include="DataService\IDataService\ISaleHistoryService.cs" />
+    <Compile Include="DataService\IDataService\IRecipesService.cs" />
+    <Compile Include="DataService\IDataService\IStorehousesService.cs" />
+    <Compile Include="DataService\IDataService\IIngredientsService.cs" />
+    <Compile Include="DataService\IDataService\IRestaurantsService.cs" />
     <Compile Include="DataService\RestaurantsService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -339,6 +344,13 @@
     <Content Include="Views\IngredientsMvc\Details.cshtml" />
     <Content Include="Views\IngredientsMvc\Edit.cshtml" />
     <Content Include="Views\IngredientsMvc\Index.cshtml" />
+    <Content Include="Views\Restaurants\Details.cshtml" />
+    <Content Include="Views\Restaurants\Edit.cshtml" />
+    <Content Include="Views\Restaurants\Index.cshtml" />
+    <Content Include="Views\IngredientsMvc\Create.cshtml" />
+    <Content Include="Views\IngredientsMvc\Delete.cshtml" />
+    <Content Include="Views\Restaurants\Create.cshtml" />
+    <Content Include="Views\Restaurants\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
