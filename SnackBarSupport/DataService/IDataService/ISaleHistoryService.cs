@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using SnackBarSupport.Dto.Dto;
+using Models.Dto;
 
 namespace SnackBarSupport.DataService.IDataService
 {

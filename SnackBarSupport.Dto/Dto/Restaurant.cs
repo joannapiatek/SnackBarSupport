@@ -1,9 +1,12 @@
-﻿namespace SnackBarSupport.Dto.Dto
+﻿using System.Collections.Generic;
+
+namespace Models.Dto
 {
     public class Restaurant : DtoBase
     {
         public string Name { get; set; }
 
-        public int StorehouseId { get; set; }
+        // Moze byc problem z dictionary
+        public Dictionary<Ingredient, int> IngredientsCountDictionary { get; set; }
     }
 }

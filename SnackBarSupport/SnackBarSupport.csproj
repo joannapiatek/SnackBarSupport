@@ -259,13 +259,17 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IngredientsController.cs" />
+    <Compile Include="Controllers\RecipesController.cs" />
+    <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="DAL\DbContext.cs" />
     <Compile Include="DataService\IDataService\ISaleHistoryService.cs" />
     <Compile Include="DataService\IDataService\IRecipesService.cs" />
-    <Compile Include="DataService\IDataService\IStorehousesService.cs" />
     <Compile Include="DataService\IDataService\IIngredientsService.cs" />
     <Compile Include="DataService\IDataService\IRestaurantsService.cs" />
+    <Compile Include="DataService\IngredientsService.cs" />
+    <Compile Include="DataService\RecipesService.cs" />
     <Compile Include="DataService\RestaurantsService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -341,19 +345,19 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\IngredientsMvc\Details.cshtml" />
-    <Content Include="Views\IngredientsMvc\Edit.cshtml" />
-    <Content Include="Views\IngredientsMvc\Index.cshtml" />
-    <Content Include="Views\Restaurants\Details.cshtml" />
+    <Content Include="Views\Ingredients\Details.cshtml" />
+    <Content Include="Views\Ingredients\Edit.cshtml" />
+    <Content Include="Views\Ingredients\Index.cshtml" />
     <Content Include="Views\Restaurants\Edit.cshtml" />
     <Content Include="Views\Restaurants\Index.cshtml" />
-    <Content Include="Views\IngredientsMvc\Create.cshtml" />
-    <Content Include="Views\IngredientsMvc\Delete.cshtml" />
+    <Content Include="Views\Ingredients\Create.cshtml" />
     <Content Include="Views\Restaurants\Create.cshtml" />
-    <Content Include="Views\Restaurants\Delete.cshtml" />
+    <Content Include="Views\Restaurants\Details.cshtml" />
+    <Content Include="Views\Resources\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Recipes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -368,9 +372,9 @@
     <None Include="App_Config\Web.AzureDebug.config">
       <DependentUpon>Web.Base.config</DependentUpon>
     </None>
-    <ProjectReference Include="..\SnackBarSupport.Dto\SnackBarSupport.Models.csproj">
+    <ProjectReference Include="..\SnackBarSupport.Dto\Models.csproj">
       <Project>{1EA39122-C8A3-47F6-92CE-90F8B045A47E}</Project>
-      <Name>SnackBarSupport.Models</Name>
+      <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

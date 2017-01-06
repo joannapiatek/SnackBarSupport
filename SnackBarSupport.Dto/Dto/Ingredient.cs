@@ -1,4 +1,4 @@
-﻿namespace SnackBarSupport.Dto.Dto
+﻿namespace Models.Dto
 {
     public class Ingredient : DtoBase
     {

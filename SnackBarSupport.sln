@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnackBarSupport", "SnackBar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnackBarSupport.Tests", "SnackBarSupport.Tests\SnackBarSupport.Tests.csproj", "{00DB121A-A368-4381-A2D3-440E1E812CA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnackBarSupport.Models", "SnackBarSupport.Dto\SnackBarSupport.Models.csproj", "{1EA39122-C8A3-47F6-92CE-90F8B045A47E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "SnackBarSupport.Dto\Models.csproj", "{1EA39122-C8A3-47F6-92CE-90F8B045A47E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

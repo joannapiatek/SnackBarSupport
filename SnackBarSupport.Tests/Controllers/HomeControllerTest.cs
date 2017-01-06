@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SnackBarSupport;
 using SnackBarSupport.Controllers;
 
 namespace SnackBarSupport.Tests.Controllers

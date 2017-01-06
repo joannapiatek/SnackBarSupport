@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SnackBarSupport.Dto.Dto
+namespace Models.Dto
 {
     public class SaleHistory : DtoBase
     {
@@ -9,7 +9,7 @@ namespace SnackBarSupport.Dto.Dto
 
         public double Value { get; set; }
 
-        public List<Recipe> Dishes { get; set; }
+        public ICollection<Recipe> Dishes { get; set; }
 
         public DateTime SaleDate { get; set; }
     }

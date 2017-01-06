@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace SnackBarSupport.Dto.Dto
+namespace Models.Dto
 {
     public abstract class DtoBase
     {

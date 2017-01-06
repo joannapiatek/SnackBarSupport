@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
-using SnackBarSupport.Dto.Dto;
+using System.Threading.Tasks;
+using Models.Dto;
 
 namespace SnackBarSupport.DataService.IDataService
 {
     public interface IIngredientsService
     {
-        List<Ingredient> GetAll();
-        bool Add(Ingredient ingredients);
-        bool Delete(Ingredient ingredients);
-        bool Update(Ingredient ingredients);
+        Task<List<Ingredient>> GetAll();
+        Task<Ingredient> Get(string id);
+        Task Add(Ingredient ingredient);
+        Task Delete(string id);
+        Task Update(Ingredient ingredient);
     }
 }

@@ -1,5 +1,9 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using Models.Dto;
 using SnackBarSupport.DataService;
@@ -7,23 +11,23 @@ using SnackBarSupport.DataService.IDataService;
 
 namespace SnackBarSupport.Controllers
 {
-    public class RestaurantsController : Controller
+    public class RecipesController : Controller
     {
-        private readonly IRestaurantsService _restaurantsService;
+        private readonly IRecipesService _recipesService;
 
-        public RestaurantsController(IRestaurantsService service)
+        public RecipesController(IRecipesService service)
         {
-            _restaurantsService = service;
+            _recipesService = service;
         }
 
-        public RestaurantsController()
+        public RecipesController()
         {
-            _restaurantsService = new RestaurantsService();
+            _recipesService = new RecipesService();
         }
 
         public async Task<ActionResult> Index()
         {
-            var collection = await _restaurantsService.GetAll();
+            var collection = (await _recipesService.GetAll());
             return View(collection);
         }
 
@@ -33,15 +37,15 @@ namespace SnackBarSupport.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Restaurant restaurant)
+        public async Task<ActionResult> Create(Recipe recipe)
         {
             if (ModelState.IsValid)
             {
-                await _restaurantsService.Add(restaurant);
+                await _recipesService.Add(recipe);
                 return RedirectToAction("Index");
             }
 
-            return View(restaurant);
+            return View(recipe);
         }
 
         public async Task<ActionResult> Details(string id)
@@ -50,13 +54,13 @@ namespace SnackBarSupport.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var restaurant = await _restaurantsService.Get(id);
-            if (restaurant == null)
+            var recipe = await _recipesService.Get(id);
+            if (recipe == null)
             {
                 return HttpNotFound();
             }
 
-            return View(restaurant);
+            return View(recipe);
         }
 
         public async Task<ActionResult> Edit(string id)
@@ -66,25 +70,25 @@ namespace SnackBarSupport.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var restaurant = await _restaurantsService.Get(id);
-            if (restaurant == null)
+            var recipe = await _recipesService.Get(id);
+            if (recipe == null)
             {
                 return HttpNotFound();
             }
 
-            return View(restaurant);
-        } 
-        
-        [HttpPost]    
-        public async Task<ActionResult> Edit(Restaurant restaurant)
+            return View(recipe);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(Recipe recipe)
         {
             if (ModelState.IsValid)
             {
-                await _restaurantsService.Update(restaurant);
+                await _recipesService.Update(recipe);
                 return RedirectToAction("Index");
             }
 
-            return View(restaurant);
+            return View(recipe);
         }
 
         [HttpPost]
@@ -95,7 +99,7 @@ namespace SnackBarSupport.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            await _restaurantsService.Delete(id);
+            await _recipesService.Delete(id);
 
             return RedirectToAction("Index");
         }

@@ -1,5 +1,6 @@
 ﻿@using System.Web.Mvc.Html
-@model Models.Dto.Restaurant
+@using System.Web.Optimization
+@model Models.Dto.Recipe
 
 @{
     ViewBag.Title = "Create";
@@ -13,7 +14,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Restaurant</h4>
+        <h4>Recipe</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*<div class="form-group">
@@ -43,3 +44,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

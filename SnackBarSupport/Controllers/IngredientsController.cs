@@ -7,23 +7,23 @@ using SnackBarSupport.DataService.IDataService;
 
 namespace SnackBarSupport.Controllers
 {
-    public class RestaurantsController : Controller
+    public class IngredientsController : Controller
     {
-        private readonly IRestaurantsService _restaurantsService;
+        private readonly IIngredientsService _ingredientsService;
 
-        public RestaurantsController(IRestaurantsService service)
+        public IngredientsController(IIngredientsService service)
         {
-            _restaurantsService = service;
+            _ingredientsService = service;
         }
 
-        public RestaurantsController()
+        public IngredientsController()
         {
-            _restaurantsService = new RestaurantsService();
+            _ingredientsService = new IngredientsService();
         }
 
         public async Task<ActionResult> Index()
         {
-            var collection = await _restaurantsService.GetAll();
+            var collection = (await _ingredientsService.GetAll());
             return View(collection);
         }
 
@@ -33,15 +33,15 @@ namespace SnackBarSupport.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Restaurant restaurant)
+        public async Task<ActionResult> Create(Ingredient ingredient)
         {
             if (ModelState.IsValid)
             {
-                await _restaurantsService.Add(restaurant);
+                await _ingredientsService.Add(ingredient);
                 return RedirectToAction("Index");
             }
 
-            return View(restaurant);
+            return View(ingredient);
         }
 
         public async Task<ActionResult> Details(string id)
@@ -50,13 +50,13 @@ namespace SnackBarSupport.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var restaurant = await _restaurantsService.Get(id);
-            if (restaurant == null)
+            var ingredient = await _ingredientsService.Get(id);
+            if (ingredient == null)
             {
                 return HttpNotFound();
             }
 
-            return View(restaurant);
+            return View(ingredient);
         }
 
         public async Task<ActionResult> Edit(string id)
@@ -66,25 +66,25 @@ namespace SnackBarSupport.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var restaurant = await _restaurantsService.Get(id);
-            if (restaurant == null)
+            var ingredient = await _ingredientsService.Get(id);
+            if (ingredient == null)
             {
                 return HttpNotFound();
             }
 
-            return View(restaurant);
-        } 
-        
-        [HttpPost]    
-        public async Task<ActionResult> Edit(Restaurant restaurant)
+            return View(ingredient);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(Ingredient ingredient)
         {
             if (ModelState.IsValid)
             {
-                await _restaurantsService.Update(restaurant);
+                await _ingredientsService.Update(ingredient);
                 return RedirectToAction("Index");
             }
 
-            return View(restaurant);
+            return View(ingredient);
         }
 
         [HttpPost]
@@ -95,7 +95,7 @@ namespace SnackBarSupport.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            await _restaurantsService.Delete(id);
+            await _ingredientsService.Delete(id);
 
             return RedirectToAction("Index");
         }
