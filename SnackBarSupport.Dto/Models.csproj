@@ -78,12 +78,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dto\DtoBase.cs" />
-    <Compile Include="Dto\Ingredient.cs" />
-    <Compile Include="Dto\Recipe.cs" />
-    <Compile Include="Dto\Restaurant.cs" />
-    <Compile Include="Entities\ResourcesMain.cs" />
+    <Compile Include="Dto\IngredientDto.cs" />
+    <Compile Include="Dto\RecipeDto.cs" />
+    <Compile Include="Dto\RestaurantDto.cs" />
+    <Compile Include="ViewModels\IngredientSelect.cs" />
+    <Compile Include="ViewModels\RecipeSelect.cs" />
+    <Compile Include="ViewModels\Recipe.cs" />
+    <Compile Include="ViewModels\Resources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Dto\SaleHistory.cs" />
+    <Compile Include="Dto\SaleHistoryDto.cs" />
+    <Compile Include="ViewModels\SaleHistoryList.cs" />
+    <Compile Include="ViewModels\SalesHistoryCreate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

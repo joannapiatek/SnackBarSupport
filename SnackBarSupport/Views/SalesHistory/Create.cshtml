@@ -1,0 +1,83 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using System.Web.Optimization
+@model Models.ViewModels.SalesHistoryCreate
+
+@{
+    ViewBag.Title = "New order";
+}
+
+<h4>New Order</h4>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label for="@Model.RestaurantId">Choose restaurant: </label>
+            <select name="SelectedRestaurantId" class="form-control">
+                @{
+                    foreach (var restaurant in Model.Restaurants)
+                    {
+                        <option value="@restaurant.Id">@restaurant.Name</option>
+                    }
+                }
+            </select>
+
+            @Html.DropDownListFor(
+                x => x.RestaurantId,
+                Model.Restaurants.Select(x => new SelectListItem() {Value = x.Id, Text = x.Name}),
+                new { htmlAttributes = new { @class = "form-control" }})
+            <br />
+            <br />
+            <table class="table">
+                <tr>
+                    <th>Dish</th>
+                    <th>Count</th>
+                </tr>
+
+                @for (int i = 0; i < Model.AllDishes.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.HiddenFor(model => Model.AllDishes[i].Id)
+                            @Html.HiddenFor(model => Model.AllDishes[i].Name)
+                            @Html.HiddenFor(model => Model.AllDishes[i].Price)
+                            @Html.CheckBoxFor(model => Model.AllDishes[i].IsSelected)
+                            @Html.Label("IsSelected", Model.AllDishes[i].Name)
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => Model.AllDishes[i].Count, new { htmlAttributes = new { @class = "form-control" } })
+                        </td>
+                    </tr>
+                }
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Value, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+            </table>           
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Save" class="btn btn-default"/>
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+                    }
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

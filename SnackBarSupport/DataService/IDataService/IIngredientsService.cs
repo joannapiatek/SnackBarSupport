@@ -6,10 +6,10 @@ namespace SnackBarSupport.DataService.IDataService
 {
     public interface IIngredientsService
     {
-        Task<List<Ingredient>> GetAll();
-        Task<Ingredient> Get(string id);
-        Task Add(Ingredient ingredient);
-        Task Delete(string id);
-        Task Update(Ingredient ingredient);
+        Task<List<IngredientDto>> GetAllAsync();
+        Task<IngredientDto> GetAsync(string id);
+        Task AddAsync(IngredientDto ingredient);
+        Task DeleteAsync(string id);
+        Task UpdateAsync(IngredientDto ingredient);
     }
 }

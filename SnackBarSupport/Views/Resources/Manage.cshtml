@@ -1,0 +1,44 @@
+﻿@using System.Web.Mvc.Html
+@model Models.ViewModels.Resources
+@{
+    ViewBag.Title = "Resource's management";
+}
+
+<h2>@Model.Restaurant.Name</h2>
+
+<div>
+    <h4>Resources</h4>
+    <hr />
+</div>
+<div>
+    <div>
+        <h4>Ingredients in storehouse</h4>
+    </div>
+
+    <table class="table">
+        @foreach (var item in Model.Restaurant.IngredientsCountDictionary)
+        {
+            <tr>
+                <td>
+                    <b>
+                        @Html.DisplayFor(modelItem => item.Key.Name)
+                    </b>
+                </td>
+                <td>
+                    <b>
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </b>
+                </td>
+                <td>
+                    @Html.ActionLink("Add", "Increment", new { ingredientId = item.Key.Id, restaurantId = Model.Restaurant.Id })
+                </td>
+            </tr>
+
+        }
+    </table>
+</div>
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

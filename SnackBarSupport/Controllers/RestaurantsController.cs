@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Models.Dto;
@@ -10,20 +12,23 @@ namespace SnackBarSupport.Controllers
     public class RestaurantsController : Controller
     {
         private readonly IRestaurantsService _restaurantsService;
+        private readonly IIngredientsService _ingredientsService;
 
-        public RestaurantsController(IRestaurantsService service)
+        public RestaurantsController(IRestaurantsService restaurantsService, IIngredientsService ingredientsService)
         {
-            _restaurantsService = service;
+            _restaurantsService = restaurantsService;
+            _ingredientsService = ingredientsService;
         }
 
         public RestaurantsController()
         {
             _restaurantsService = new RestaurantsService();
+            _ingredientsService = new IngredientsService();
         }
 
         public async Task<ActionResult> Index()
         {
-            var collection = await _restaurantsService.GetAll();
+            var collection = await _restaurantsService.GetAllAsync();
             return View(collection);
         }
 
@@ -33,16 +38,17 @@ namespace SnackBarSupport.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Restaurant restaurant)
+        public async Task<ActionResult> Create(RestaurantDto restaurant)
         {
             if (ModelState.IsValid)
             {
-                await _restaurantsService.Add(restaurant);
+                restaurant.IngredientsCountDictionary = await CreateIngredientsCountDictAsync();
+                await _restaurantsService.AddAsync(restaurant);
                 return RedirectToAction("Index");
             }
 
             return View(restaurant);
-        }
+        }       
 
         public async Task<ActionResult> Details(string id)
         {
@@ -50,7 +56,7 @@ namespace SnackBarSupport.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var restaurant = await _restaurantsService.Get(id);
+            var restaurant = await _restaurantsService.GetAsync(id);
             if (restaurant == null)
             {
                 return HttpNotFound();
@@ -66,7 +72,7 @@ namespace SnackBarSupport.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var restaurant = await _restaurantsService.Get(id);
+            var restaurant = await _restaurantsService.GetAsync(id);
             if (restaurant == null)
             {
                 return HttpNotFound();
@@ -76,18 +82,17 @@ namespace SnackBarSupport.Controllers
         } 
         
         [HttpPost]    
-        public async Task<ActionResult> Edit(Restaurant restaurant)
+        public async Task<ActionResult> Edit(RestaurantDto restaurant)
         {
             if (ModelState.IsValid)
             {
-                await _restaurantsService.Update(restaurant);
+                await _restaurantsService.UpdateAsync(restaurant);
                 return RedirectToAction("Index");
             }
 
             return View(restaurant);
         }
 
-        [HttpPost]
         public async Task<ActionResult> Delete(string id)
         {
             if (string.IsNullOrEmpty(id) || id == 0.ToString())
@@ -95,9 +100,22 @@ namespace SnackBarSupport.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            await _restaurantsService.Delete(id);
+            await _restaurantsService.DeleteAsync(id);
 
             return RedirectToAction("Index");
+        }
+
+        private async Task<Dictionary<IngredientDto, int>> CreateIngredientsCountDictAsync()
+        {
+            var dict = new Dictionary<IngredientDto, int>();
+            var ingredients = await _ingredientsService.GetAllAsync();
+
+            foreach (var ingredientDto in ingredients)
+            {
+                dict.Add(ingredientDto, 0);
+            }
+
+            return dict;
         }
     }
 }

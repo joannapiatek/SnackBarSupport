@@ -1,5 +1,5 @@
 ﻿@using System.Web.Mvc.Html
-@model Models.Dto.Recipe
+@model Models.Dto.RecipeDto
 
 @{
     ViewBag.Title = "Details";
@@ -9,16 +9,31 @@
 
 <div>
     <h4>Recipe</h4>
-    <hr />
-    <dl>
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <br />
+        <br />
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <br />
+        <br />
+
+        <label for="ingredients" class="control-label col-md-2">Ingredients:</label>
+        <div id="ingredients" class="col-md-10">
+            @foreach (var ingredient in Model.Ingredients)
+            {
+                @Html.Label(ingredient.Name)
+                <br/>
+            }
+
+        </div>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

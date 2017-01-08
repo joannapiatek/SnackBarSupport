@@ -4,16 +4,16 @@ using SnackBarSupport.DAL;
 
 namespace SnackBarSupport.DataService
 {
-    public class RecipesService : GenericDataService<RecipeDto>, IRecipesService
+    public class SalesHistoryService : GenericDataService<SaleHistoryDto>, ISaleHistoryService
     {
-        protected RecipesService(MongoDbContext context)
+        protected SalesHistoryService(MongoDbContext context)
         {
             MongoDbContext = context;
         }
 
-        public RecipesService()
+        public SalesHistoryService()
         {
             MongoDbContext = new MongoDbContext();
-        }      
+        }
     }
 }

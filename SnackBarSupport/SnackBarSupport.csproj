@@ -263,7 +263,9 @@
     <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
+    <Compile Include="Controllers\SalesHistoryController.cs" />
     <Compile Include="DAL\DbContext.cs" />
+    <Compile Include="DataService\GenericDataService.cs" />
     <Compile Include="DataService\IDataService\ISaleHistoryService.cs" />
     <Compile Include="DataService\IDataService\IRecipesService.cs" />
     <Compile Include="DataService\IDataService\IIngredientsService.cs" />
@@ -271,6 +273,7 @@
     <Compile Include="DataService\IngredientsService.cs" />
     <Compile Include="DataService\RecipesService.cs" />
     <Compile Include="DataService\RestaurantsService.cs" />
+    <Compile Include="DataService\SalesHistoryService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -332,7 +335,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="App_Config\Web.Base.config" />
+    <Content Include="App_Config\Web.Base.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Config\Web.Debug.config">
       <DependentUpon>Web.Base.config</DependentUpon>
     </Content>
@@ -354,10 +359,16 @@
     <Content Include="Views\Restaurants\Create.cshtml" />
     <Content Include="Views\Restaurants\Details.cshtml" />
     <Content Include="Views\Resources\Index.cshtml" />
+    <Content Include="Views\Recipes\Create.cshtml" />
+    <Content Include="Views\Recipes\Details.cshtml" />
+    <Content Include="Views\Recipes\Edit.cshtml" />
+    <Content Include="Views\Recipes\Index.cshtml" />
+    <Content Include="Views\Resources\Manage.cshtml" />
+    <Content Include="Views\SalesHistory\Index.cshtml" />
+    <Content Include="Views\SalesHistory\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Recipes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

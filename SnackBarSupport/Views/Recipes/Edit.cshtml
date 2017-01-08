@@ -1,6 +1,6 @@
 ﻿@using System.Web.Mvc.Html
 @using System.Web.Optimization
-@model Models.Dto.Recipe
+@model Models.ViewModels.Recipe
 
 @{
     ViewBag.Title = "Edit";
@@ -12,9 +12,9 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Ingredient</h4>
+        <h4>Recipe</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -25,11 +25,32 @@
                 @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
             </div>
-        </div>
+            <br/>
+            <br/>
 
+            @Html.LabelFor(model => model.Price, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Price, "", new {@class = "text-danger"})
+            </div>
+            <br/>
+            <br/>
+
+            <label for="ingredients" class="control-label col-md-2">Ingredients</label>
+            <div id="ingredients" class="col-md-10">
+                @for (int i = 0; i < Model.AllIngredients.Count; i++)
+                {
+                    @Html.HiddenFor(model => Model.AllIngredients[i].Id)
+                    @Html.HiddenFor(model => Model.AllIngredients[i].Name)
+                    @Html.CheckBoxFor(model => Model.AllIngredients[i].IsSelected)
+                    @Html.Label("IsSelected", Model.AllIngredients[i].Name)
+                    <br/>
+                }
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Edit" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -38,7 +59,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

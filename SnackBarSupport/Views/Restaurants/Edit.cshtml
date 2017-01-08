@@ -1,6 +1,6 @@
 ﻿@using System.Web.Mvc.Html
 @using System.Web.Optimization
-@model Models.Dto.Restaurant
+@model Models.Dto.RestaurantDto
 
 @{
     ViewBag.Title = "Edit";
@@ -29,7 +29,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Edit" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -38,7 +38,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

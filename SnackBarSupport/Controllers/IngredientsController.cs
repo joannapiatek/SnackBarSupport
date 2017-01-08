@@ -23,7 +23,7 @@ namespace SnackBarSupport.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var collection = (await _ingredientsService.GetAll());
+            var collection = (await _ingredientsService.GetAllAsync());
             return View(collection);
         }
 
@@ -33,11 +33,11 @@ namespace SnackBarSupport.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Ingredient ingredient)
+        public async Task<ActionResult> Create(IngredientDto ingredient)
         {
             if (ModelState.IsValid)
             {
-                await _ingredientsService.Add(ingredient);
+                await _ingredientsService.AddAsync(ingredient);
                 return RedirectToAction("Index");
             }
 
@@ -50,7 +50,7 @@ namespace SnackBarSupport.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var ingredient = await _ingredientsService.Get(id);
+            var ingredient = await _ingredientsService.GetAsync(id);
             if (ingredient == null)
             {
                 return HttpNotFound();
@@ -66,7 +66,7 @@ namespace SnackBarSupport.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var ingredient = await _ingredientsService.Get(id);
+            var ingredient = await _ingredientsService.GetAsync(id);
             if (ingredient == null)
             {
                 return HttpNotFound();
@@ -76,18 +76,17 @@ namespace SnackBarSupport.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(Ingredient ingredient)
+        public async Task<ActionResult> Edit(IngredientDto ingredient)
         {
             if (ModelState.IsValid)
             {
-                await _ingredientsService.Update(ingredient);
+                await _ingredientsService.UpdateAsync(ingredient);
                 return RedirectToAction("Index");
             }
 
             return View(ingredient);
         }
 
-        [HttpPost]
         public async Task<ActionResult> Delete(string id)
         {
             if (string.IsNullOrEmpty(id) || id == 0.ToString())
@@ -95,7 +94,7 @@ namespace SnackBarSupport.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            await _ingredientsService.Delete(id);
+            await _ingredientsService.DeleteAsync(id);
 
             return RedirectToAction("Index");
         }
