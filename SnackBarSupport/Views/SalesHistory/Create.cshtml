@@ -1,6 +1,5 @@
 ﻿@using System.Web.Mvc
 @using System.Web.Mvc.Html
-@using System.Web.Optimization
 @model Models.ViewModels.SalesHistoryCreate
 
 @{
@@ -20,19 +19,10 @@
 
         <div class="form-group">
             <label for="@Model.RestaurantId">Choose restaurant: </label>
-            <select name="SelectedRestaurantId" class="form-control">
-                @{
-                    foreach (var restaurant in Model.Restaurants)
-                    {
-                        <option value="@restaurant.Id">@restaurant.Name</option>
-                    }
-                }
-            </select>
-
             @Html.DropDownListFor(
                 x => x.RestaurantId,
                 Model.Restaurants.Select(x => new SelectListItem() {Value = x.Id, Text = x.Name}),
-                new { htmlAttributes = new { @class = "form-control" }})
+                new { @class = "form-control" })
             <br />
             <br />
             <table class="table">
@@ -59,11 +49,11 @@
 
                 <tr>
                     <td>
-                        @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @*    @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })*@
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(model => model.Value, new { htmlAttributes = new { @class = "form-control" } })
-                    </td>
+                    </td>*@
                 </tr>
             </table>           
         </div>

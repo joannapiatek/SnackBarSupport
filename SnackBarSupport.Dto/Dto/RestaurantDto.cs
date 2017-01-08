@@ -6,6 +6,10 @@ namespace Models.Dto
 {
     public class RestaurantDto : DtoBase
     {
+        public RestaurantDto()
+        {
+            IngredientsCountDictionary = new Dictionary<IngredientDto, int>();
+        }
         public string Name { get; set; }
 
         // Moze byc problem z dictionary
