@@ -52,17 +52,51 @@ namespace SnackBarSupport.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(SalesHistoryCreate model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                model.Date = DateTime.Now;
-                FillSelectedRecipes(model);
-                var dto = new SaleHistoryDto(model);
-                
-                await _salesHistorysService.AddAsync(dto);
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", model);
             }
 
-            return RedirectToAction("Create", model);
+            model.Date = DateTime.Now;
+            FillSelectedRecipes(model);
+            var dto = new SaleHistoryDto(model);
+
+            var restaurant = await _restaurantsService.GetAsync(model.RestaurantId);
+            if (restaurant == null)
+            {
+                return HttpNotFound();
+            }
+
+            var selectedDishes = model.AllDishes.Where(d => d.IsSelected).ToList();
+            var dishesFromDb = await _recipesService.GetAllAsync();
+            foreach (var dish in selectedDishes)
+            {
+                dish.Ingredients = dishesFromDb.Single(d => d.Id == dish.Id).Ingredients;
+            }
+
+            //if (!DishesCanBePrepared(
+            //    selectedDishes, 
+            //    restaurant.IngredientsCountDictionary))
+            //{
+            //    model.Message = Properties.Resources.LackOfIngredients;
+            //    return View(model);
+            //}
+
+            try
+            {
+                SubtractIngredientsFromRestaurant(restaurant, selectedDishes);
+            }
+            catch (Exception e)
+            {
+                model.Message = e.Message;
+                model.Restaurants = await _restaurantsService.GetAllAsync();
+                return View(model);
+            }
+            
+            await _restaurantsService.UpdateAsync(restaurant);
+
+            await _salesHistorysService.AddAsync(dto);
+            return RedirectToAction("Index");
         }
 
         private async Task<IList<SaleHistoryList>> ConvertToViewModel(IList<SaleHistoryDto> collectionDto)
@@ -96,6 +130,79 @@ namespace SnackBarSupport.Controllers
             {
                 var dto = new RecipeDto(dish);
                 history.DishesForSale.Add(dto.Name, dish.Count);
+            }
+        }
+
+        //private bool DishesCanBePrepared(IList<RecipeSelect> dishes, IReadOnlyDictionary<IngredientDto, int> ingredientsCountDictionary)
+        //{
+        //    foreach (var dish in dishes)
+        //    {
+        //        DishCanBePrepared(dish, ingredientsCountDictionary);
+        //    }
+
+        //    if (dishes.Count(d => !d.CanBePrepared) > 0)
+        //    {
+        //        return false;
+        //    }
+
+        //    return true;
+        //}
+
+        //How to do this?
+        private bool DishCanBePrepared(RecipeSelect dish, IReadOnlyDictionary<IngredientDto, int> ingredientsCountDictionary, int amount)
+        {
+            dish.CanBePrepared = true;
+            foreach (var ing in dish.Ingredients)
+            {
+                int value = 0;
+                if (ingredientsCountDictionary.TryGetValue(ing, out value))
+                {
+                    if (value - amount >= 0) continue;
+                    //niewiadomo, czy properta bedzie potrzebna
+                    dish.CanBePrepared = false;
+                    return false;
+                }
+                else
+                {
+                    //TODO: błąd!
+                    //niewiadomo, czy properta bedzie potrzebna
+                    dish.CanBePrepared = false;
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void SubtractIngredientsFromRestaurant(RestaurantDto restaurant, IList<RecipeSelect> dishes)
+        {
+            var dict = restaurant.IngredientsCountDictionary;
+
+            foreach (var dish in dishes)
+            {
+                if (!DishCanBePrepared(dish, dict, dish.Count))
+                {
+                    var message = string.Format(Properties.Resources.LackOfIngredients, dish.Name);
+                    throw new Exception(message);
+                }
+
+                foreach (var ing in dish.Ingredients)
+                {
+                    SubtractIngredient(dict, ing, dish.Count);
+                }
+            }        
+        }
+
+        private void SubtractIngredient(Dictionary<IngredientDto, int> dict, IngredientDto ingredientDto, int amount)
+        {
+            if (dict.ContainsKey(ingredientDto))
+            {
+                dict[ingredientDto] -= amount;
+            }
+            else
+            {
+                var message = string.Format(Properties.Resources.IngredientNotFound, ingredientDto.Name);
+                throw new Exception(message);
             }
         }
     }

@@ -10,8 +10,8 @@ namespace SnackBarSupport.Controllers
 {
     public class ResourcesController : Controller
     {
-        private IRestaurantsService _restaurantsService;
-        private IIngredientsService _ingredientsService;
+        private readonly IRestaurantsService _restaurantsService;
+        private readonly IIngredientsService _ingredientsService;
 
         public ResourcesController()
         {

@@ -12,7 +12,6 @@ namespace Models.Dto
         }
         public string Name { get; set; }
 
-        // Moze byc problem z dictionary
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
         public Dictionary<IngredientDto, int> IngredientsCountDictionary { get; set; }
     }

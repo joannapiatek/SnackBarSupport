@@ -10,7 +10,7 @@ namespace SnackBarSupport.DAL
     {
         protected static IMongoClient Client;
         protected static IMongoDatabase Database;
-        private const int WriteConcernCount = 1; 
+        private const int WriteConcernCount = 2; 
 
         public MongoDbContext()
         {

@@ -19,6 +19,7 @@ namespace Models.ViewModels
 
         public bool IsSelected { get; set; }
         public int Count { get; set; }
+        public bool CanBePrepared { get; set; }
 
         public RecipeSelect() {}
 

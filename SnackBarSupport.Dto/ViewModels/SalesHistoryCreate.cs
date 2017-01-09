@@ -22,8 +22,9 @@ namespace Models.ViewModels
         public IDictionary<string, int> DishesForSale { get; set; }
         public DateTime Date { get; set; }
         public string RestaurantId { get; set; }
-
         public IList<RestaurantDto> Restaurants { get; set; }
+
+        public string Message { get; set; }
 
         private IList<RecipeSelect> _allDishes;
         public IList<RecipeSelect> AllDishes
@@ -49,6 +50,7 @@ namespace Models.ViewModels
             {
                 DishesForSale = new Dictionary<string, int>();
             }
+            Message = string.Empty;
         }
     }
 }

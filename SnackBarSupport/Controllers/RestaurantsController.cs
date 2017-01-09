@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -84,13 +85,19 @@ namespace SnackBarSupport.Controllers
         [HttpPost]    
         public async Task<ActionResult> Edit(RestaurantDto restaurant)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await _restaurantsService.UpdateAsync(restaurant);
-                return RedirectToAction("Index");
+                return View(restaurant);
             }
 
-            return View(restaurant);
+            if (!restaurant.IngredientsCountDictionary.Any())
+            {
+                var oldRestaurant = await _restaurantsService.GetAsync(restaurant.Id);
+                restaurant.IngredientsCountDictionary = oldRestaurant.IngredientsCountDictionary;
+            }
+
+            await _restaurantsService.UpdateAsync(restaurant);
+            return RedirectToAction("Index");
         }
 
         public async Task<ActionResult> Delete(string id)
