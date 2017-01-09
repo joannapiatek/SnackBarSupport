@@ -54,6 +54,7 @@ namespace SnackBarSupport.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.Date = DateTime.Now;
                 FillSelectedRecipes(model);
                 var dto = new SaleHistoryDto(model);
                 

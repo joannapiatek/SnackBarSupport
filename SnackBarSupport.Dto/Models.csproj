@@ -89,6 +89,7 @@
     <Compile Include="Dto\SaleHistoryDto.cs" />
     <Compile Include="ViewModels\SaleHistoryList.cs" />
     <Compile Include="ViewModels\SalesHistoryCreate.cs" />
+    <Compile Include="ViewModels\SnackBarError.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

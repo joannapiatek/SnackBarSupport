@@ -11,20 +11,23 @@ namespace SnackBarSupport.Controllers
     public class ResourcesController : Controller
     {
         private IRestaurantsService _restaurantsService;
-        private IRestaurantsService RestaurantsService
-        {
-            get { return _restaurantsService ?? (_restaurantsService = new RestaurantsService()); }
-        }
-
         private IIngredientsService _ingredientsService;
-        private IIngredientsService IngredientsService
+
+        public ResourcesController()
         {
-            get { return _ingredientsService ?? (_ingredientsService = new IngredientsService()); }
+            _restaurantsService = new RestaurantsService();
+            _ingredientsService = new IngredientsService();
+        }
+        
+        public ResourcesController(IRestaurantsService restaurantsService, IIngredientsService ingredientsService)
+        {
+            _restaurantsService = restaurantsService;
+            _ingredientsService = ingredientsService;
         }
 
         public async Task<ActionResult> Index()
         {
-            var collection = await RestaurantsService.GetAllAsync();
+            var collection = await _restaurantsService.GetAllAsync();
             return View(collection);
         }
 
@@ -34,9 +37,9 @@ namespace SnackBarSupport.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var restaurantDetails = await RestaurantsService.GetAsync(restaurant.Id);
+            var restaurantDetails = await _restaurantsService.GetAsync(restaurant.Id);
 
-            var ingredients = await IngredientsService.GetAllAsync();
+            var ingredients = await _ingredientsService.GetAllAsync();
 
             var resources = new Resources()
             {
@@ -50,7 +53,7 @@ namespace SnackBarSupport.Controllers
         public async Task<ActionResult> Increment(string ingredientId, string restaurantId)
         {
             var ingredientDto = new IngredientDto() {Id = ingredientId};
-            var restaurant = await RestaurantsService.GetAsync(restaurantId);
+            var restaurant = await _restaurantsService.GetAsync(restaurantId);
 
             var dict = restaurant.IngredientsCountDictionary;
             if (dict.ContainsKey(ingredientDto))
@@ -58,7 +61,7 @@ namespace SnackBarSupport.Controllers
                 dict[ingredientDto] += 1;
             }
 
-            await RestaurantsService.UpdateAsync(restaurant);
+            await _restaurantsService.UpdateAsync(restaurant);
 
             return RedirectToAction("Manage", restaurant);
         }
