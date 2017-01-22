@@ -1,0 +1,107 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+\usepackage[margin=1.5in]{geometry}
+
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%ustawienie jezyka polskiego
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{float}
+\usepackage[table]{xcolor}
+\usepackage{enumerate}
+\usepackage{subcaption}
+
+
+\graphicspath{ {images/} }
+
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Projekt z rozproszonych i obiektowych systemów baz danych\\
+	\vspace{5mm}
+	\textbf{Projekt aplikacji wykorzystującej repliki MongoDB}
+	}
+
+\author{\\
+	\\\textbf{Autorzy:}
+	\\Maciej Kiedrowski, nr indeksu: 200105
+	\\Joanna Piątek, nr indeksu: 199966
+	\\\\
+	\\
+	\\\textbf{Grupa:} Poniedziałek 16:10}
+\date{\textbf{Data oddania:} 23.01.2017}
+
+%%\newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}\\}
+%%\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+
+\begin{center}
+\begin{tabular}{l r}
+\\\\\\
+\textbf{Prowadzący zajęcia:} & Dr inż. Robert Wójcik, W4/K-9 \\
+\\\textbf{Ocena pracy:} &  %
+\end{tabular}
+\end{center}
+ 
+\newpage
+\tableofcontents 	%spis tresci
+\newpage
+
+%-----------------------------------------------------------
+\input{./chapters/Wstep}
+\newpage
+\input{./chapters/Teoria}
+\newpage
+\input{./chapters/Analiza_Wymagan}
+\newpage
+\input{./chapters/Implementacja_Bazy}
+\newpage
+\input{./chapters/Implementacja_Aplikacji}
+\newpage
+\input{./chapters/Wdrozenie_Testy}
+\newpage
+\input{./chapters/Podsumowaie}
+%\newpage
+%\section{Bibliografia}
+
+% K. Stąpor
+%\textit {Metody klasyfikacji obiektów w wizji komputerowej} Wydawnictwo naukowe PWN, Warszawa 2001
+
+\end{document}
