@@ -13,3 +13,5 @@
 \contentsline {subsubsection}{\numberline {3.1.2}Sie\IeC {\'c} wewn\IeC {\k e}trzna}{7}
 \contentsline {subsubsection}{\numberline {3.1.3}Sie\IeC {\'c} publiczna}{7}
 \contentsline {subsection}{\numberline {3.2}Konfiguracja MongoDB}{7}
+\contentsline {subsection}{\numberline {3.3}Schemat bazy danych}{9}
+\contentsline {subsection}{\numberline {3.4}Weryfikacja}{9}
