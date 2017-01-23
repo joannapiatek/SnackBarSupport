@@ -19,7 +19,6 @@ Replikacja wbudowana w platformę \textit{MongoDB} opiera się na \textit{replic
 	\centering
 	\includegraphics[scale=0.5]{arbiter}
 	\caption{Zestaw replik}
-	\label{fig:test}
 \end{figure}
 
 W każdym zestawie replik jeden z węzłów pełni rolę \textit{Primary}. Węzeł ten jest jedynym, który akceptuje operacje zapisu, jest również domyślnym węzłem dla wszystkich operacji odczytu z zestawu replik. Pozostałe węzły wchodzące w skład zestawu, a niebędące węzłem arbitrażowym działają w trybie \textit{Secondary}. Minimalna ilość węzłów zapewniająca poprawną pracę zestawu to 3, ilośc węzłów powinna być nieparzysta.
@@ -43,7 +42,6 @@ W trakcie głosowania zestaw pracuje w trybie \textit{read-only} - żaden z węz
 	\centering
 	\includegraphics[scale=0.5]{replica-set-trigger-election}
 	\caption{Wysoka dostępność z wykorzystaniem procesu \textit{failover}}
-	\label{fig:test}
 \end{figure}
 
 Warunkiem koniecznym do istnienia węzła \textit{Primary} w zestawie, jest dostępność ponad 50\% węzłów. Oznacza to, że dla zestawu składającego się z 3 instancji, jest on w pełni funkcjonalny przy awarii 1 węzła, natomiast zestaw skłądający się z 5 węzłów pozwala na awarię 2 węzłów. \\
@@ -56,5 +54,4 @@ Poprawne działanie węzłów monitorowane jest za pomocą \textit{Heartbeats}. 
 	\centering
 	\includegraphics[scale=0.5]{heartbeats}
 	\caption{Monitorowanie działania węzłów}
-	\label{fig:test}
 \end{figure}
