@@ -1,6 +1,34 @@
 \section{Wdrożenie i testy}
 Po wdrożeniu aplikacja została przetestowana pod względem funkcjonalnym. Testy wypadły pozytywnie.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{ingredients}
+	\caption{Przykład listy - \textit{Ingredients}}
+	\label{rys:ingredients}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{createRecipe}
+\caption{Tworzenie nowego przepisu}
+\label{rys:createRecipe}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{newOrder}
+\caption{Dodawanie nowego zamówienia}
+\label{rys:newOrder}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{resources}
+\caption{Uzupełnianie zasobów}
+\label{rys:resources}
+\end{figure}
+
 \subsection{Replikacja}
 Replikacja pomiędzy węzłami na podstawie replikacji dziennika logów daje gwarancję przeniesienia wszystkich operacji wykonanych na węźle \textit{Primary}. W czasie testów aplikacji, jak również podczas bezpośredniego obciążania bazy danych dużą ilością operacji zapisu i modyfikacji danych nie zauważono problemów z niepełną lub błędną replikacją. \\
 Głównym problemem związanym z replikacją w systemie MongoDB jest możliwy \textit{replication lag}, a więc długość okresu w którym dane na poszczególnych węzłach różnią się. \\
