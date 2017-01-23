@@ -1,9 +1,9 @@
 \section{Replikacja}
 Proces replikacji polega na synchronizacji danych pomiędzy serwerami. Pozwala osiągnąć następujące korzyści:
 \begin{itemize}
-	\item Bezpieczeństwo danych poprzez renundancję
+	\item Bezpieczeństwo danych poprzez redundancję
 	\item Wysoką dostępność
-	\item Skalowanie wydajności
+	\item Skalowanie wydajności.
 \end{itemize}
 
 \subsection{Replikacja w MongoDB}
@@ -12,7 +12,7 @@ Replikacja wbudowana w platformę \textit{MongoDB} opiera się na \textit{replic
 \subsubsection{Zestaw replik}
 \begin{description}
 \item[Zestaw replik]
- grupa procesów \textit{mongod} utrzymujących ten sam zestaw danych. Zestaw replik w ramach MongoDb skłąda się z węzłów zawierającyh dane oraz ewentualnego węzłą wspomagającego arbitraż.
+  - grupa procesów \textit{mongod} utrzymujących ten sam zestaw danych. Zestaw replik w ramach MongoDb składa się z węzłów zawierającyh dane oraz ewentualnego węzła wspomagającego arbitraż.
 \end{description}
 
 \begin{figure}[H]
@@ -32,10 +32,10 @@ W każdym zestawie replik jeden z węzłów pełni rolę \textit{Primary}. Węze
 
 
 \subsubsection{Replikacja} 
-Replikacja w \textit{MongoDB} jest replikacją asynchroniczą. Węzły \textit{Secondary} replikują dziennik operacji (\textit{oplog}) węzła \textit{Primary} i wykonują operacja w nim zawarte na przechowywanym zbiorze danych.
+Replikacja w \textit{MongoDB} jest replikacją asynchroniczą. Węzły \textit{Secondary} replikują dziennik operacji (\textit{oplog}) węzła \textit{Primary} i wykonują operacje w nim zawarte na przechowywanym zbiorze danych.
 
 \subsubsection{Wysoka dostępność}
-Zestawe replik gwarantuje wysoką dostępność danych. W przypadku awarii węzła, w szczególności węzła \textit{Primary} uruchamiany jest proces \textit{failover}. Ma on na celu zapewnienie płynności dostępu do danych. Pozostałe dziłające węzły w ramach repliki przeprowadzają głosowanie nad wyborem nowego \textit{Primary}, po zakończeniu głosowania zestaw odzyskuje pełną sprawność. Proces \textit{failover} trwa przeważnei poniżej minuty, z czego 10-30 sekund to wykrycie awarii węzła \textit{Primary}, następne 10-30 sekund proces głosowania. \\
+Zestawe replik gwarantuje wysoką dostępność danych. W przypadku awarii węzła, a w szczególności węzła \textit{Primary}, uruchamiany jest proces \textit{failover}. Ma on na celu zapewnienie płynności dostępu do danych. Pozostałe dziłające węzły w ramach repliki przeprowadzają głosowanie nad wyborem nowego \textit{Primary}, po zakończeniu głosowania zestaw odzyskuje pełną sprawność. Proces \textit{failover} trwa przeważnie poniżej minuty, z czego 10-30 sekund to wykrycie awarii węzła \textit{Primary}, następne 10-30 sekund - proces głosowania. \\
 W trakcie głosowania zestaw pracuje w trybie \textit{read-only} - żaden z węzłów nie posiada statusu \textit{Primary} a zatem wszystie żądania zapisu do bazy są odrzucane. \\
 
 \begin{figure}[H]
