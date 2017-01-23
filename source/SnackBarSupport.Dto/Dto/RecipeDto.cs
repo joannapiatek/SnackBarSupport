@@ -11,6 +11,7 @@ namespace Models.Dto
 
         public RecipeDto() { }
 
+        // Konstruktor dla ViewModel-u typu Recipe
         public RecipeDto(Recipe recipe)
         {
             Id = recipe.Id;
@@ -19,6 +20,7 @@ namespace Models.Dto
             Ingredients = recipe.IngredientsForRecipe;
         }
 
+        // Konstruktor dla ViewModel-u typu RecipeSelect
         public RecipeDto(RecipeSelect select)
         {
             Id = select.Id;

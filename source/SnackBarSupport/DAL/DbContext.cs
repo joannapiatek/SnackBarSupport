@@ -10,23 +10,30 @@ namespace SnackBarSupport.DAL
     {
         protected static IMongoClient Client;
         protected static IMongoDatabase Database;
-        private const int WriteConcernCount = 2; 
+        private const int WriteConcernCount = 2; //Ilość potwierdzeń od baz danych, 
+                                                 //na które aplikacja czeka przy zapisie
 
         public MongoDbContext()
         {
-            string mongoHost = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
+            // Pobranie connection stringa z ustawień aplikacji
+            string mongoHost = ConfigurationManager.ConnectionStrings["Default"].ConnectionString; 
+            // Stworzenie ustawień dla bazy MongoDB na podstawie connection stringa
             MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(mongoHost));
+            // Ustawienie ilości potwierdzeń od baz danych
             settings.WriteConcern = new WriteConcern(WriteConcernCount);
+            // Utworzenie klienta i pobranie z niego bazy danych
             Client = new MongoClient(settings);
             Database = Client.GetDatabase(Settings.Default.MainDbName);
         }
 
         public IMongoCollection<T> GetCollection<T>()
         {
+            // Przygotowanie nazwy dla kolekcji
             string collectionName = PrepareCollectionName(typeof(T).Name.ToLower());
-
+            
             try
             {
+                // Próba dostępu do danej kolekcji z preferowanym odczytem z bazy Secondary
                 return Database.GetCollection<T>(collectionName)
                     .WithReadPreference(ReadPreference.SecondaryPreferred) as IMongoCollection<T>;
             }

@@ -15,3 +15,6 @@
 \contentsline {subsection}{\numberline {3.2}Konfiguracja MongoDB}{7}
 \contentsline {subsection}{\numberline {3.3}Schemat bazy danych}{9}
 \contentsline {subsection}{\numberline {3.4}Weryfikacja}{9}
+\contentsline {section}{\numberline {4}Projekt i implementacja aplikacji}{10}
+\contentsline {subsection}{\numberline {4.1}Diagram przypadk\IeC {\'o}w u\IeC {\.z}ycia}{10}
+\contentsline {subsection}{\numberline {4.2}Realizacja funkcjonalno\IeC {\'s}ci}{10}
